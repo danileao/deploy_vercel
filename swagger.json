@@ -1,0 +1,68 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Serviço de criação de usuário",
+    "description": "Essa API é responsável pela criação de usuário",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "description": "Cadastro de um usuário",
+        "tags": ["Users"],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Usuário criado com sucesso"
+          },
+          "400": {
+            "description": "Erro de cadastro"
+          }
+        }
+      },
+      "get": {
+        "description": "Busca de um usuários",
+        "tags": ["Users"],
+
+        "responses": {
+          "200": {
+            "description": "Lista de usuários"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email do paciente",
+            "example": "John Doe@email.com.br"
+          },
+          "username": {
+            "type": "string",
+            "description": "Username do paciente",
+            "example": "john_doe"
+          },
+
+          "name": {
+            "type": "string",
+            "description": "Nome do paciente",
+            "example": "John Doe"
+          }
+        }
+      }
+    }
+  }
+}
