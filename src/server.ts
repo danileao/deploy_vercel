@@ -53,7 +53,7 @@ app.get('/logs/app', async (request, response) => {
 
 app.get('/logs/error', async (request, response) => {
   const items: any[] = []
-  fs.readdir(process.cwd(), function (err, filenames) {
+  fs.readdir(process.cwd() + '/src', function (err, filenames) {
     if (err) {
       return response.json({ err })
     }
