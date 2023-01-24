@@ -5,6 +5,7 @@ import swaggerDocument from '../swagger.json'
 import { css } from './css'
 import { logger } from './logger'
 import fs from 'fs'
+import app1 from '../app1.json'
 
 const app = express()
 app.use(express.json())
