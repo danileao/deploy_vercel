@@ -5,7 +5,7 @@ import swaggerDocument from '../swagger.json'
 import { css } from './css'
 import { logger } from './logger'
 import fs from 'fs'
-import app1 from '../app1.json'
+import { logger as ui } from './file'
 
 const app = express()
 app.use(express.json())
@@ -47,6 +47,7 @@ app.get('/users', async (request, response) => {
 })
 
 app.get('/logs/app', async (request, response) => {
+  ui.info('Ola')
   const file = fs.readFileSync('./app1.log')
   return response.json(file.toString())
 })
