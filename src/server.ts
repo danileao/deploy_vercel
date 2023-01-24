@@ -59,8 +59,8 @@ app.get('/logs/error', async (request, response) => {
     filenames.forEach(function (filename) {
       items.push(filename)
     })
+    return response.json(items)
   })
-  return response.json(items)
 })
 
 const options = {
