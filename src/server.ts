@@ -46,12 +46,12 @@ app.get('/users', async (request, response) => {
 })
 
 app.get('/logs/app', async (request, response) => {
-  const file = fs.readFileSync(process.cwd() + '/src/logs/app.log')
+  const file = fs.readFileSync('/var/task/src/logs/app.log')
   return response.json(file.toString())
 })
 
 app.get('/logs/error', async (request, response) => {
-  const file = fs.readFileSync(process.cwd() + '/src/logs/error.log')
+  const file = fs.readFileSync('/var/task/src/logs/error.log')
   return response.json(file.toString())
 })
 
