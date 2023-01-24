@@ -46,8 +46,21 @@ app.get('/users', async (request, response) => {
 })
 
 app.get('/logs/app', async (request, response) => {
-  const file = fs.readFileSync('/var/task/src/logs/app.log')
-  return response.json(file.toString())
+  // const file = fs.readFileSync('/var/task/src/logs/app.log')
+  const items: any[] = []
+  fs.readdir(process.cwd(), function (err, files) {
+    //handling error
+    if (err) {
+      return console.log('Unable to scan directory: ' + err)
+    }
+    //listing all files using forEach
+    files.forEach(function (file) {
+      // Do whatever you want to do with the file
+      console.log(file)
+      items.push(file)
+    })
+  })
+  return response.json(items)
 })
 
 app.get('/logs/error', async (request, response) => {
