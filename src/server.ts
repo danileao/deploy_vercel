@@ -5,7 +5,7 @@ import swaggerDocument from '../swagger.json'
 import { css } from './css'
 import { logger } from './logger'
 import fs from 'fs'
-// import { logger as ui } from './file'
+import { logger as ui } from './file'
 
 const app = express()
 app.use(express.json())
