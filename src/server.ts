@@ -3,12 +3,15 @@ import { prismaClient } from './database/prismaClient'
 import swaggerUI from 'swagger-ui-express'
 import swaggerDocument from '../swagger.json'
 import { css } from './css'
+import { logger } from './logger'
+import fs from 'fs'
 
 const app = express()
 app.use(express.json())
 const port = process.env.PORT || 5000
 
 app.post('/users', async (request, response) => {
+  logger.info('access user post')
   const { email, username, name } = request.body
 
   const verifyIfExistsUser = await prismaClient.user.findFirst({
@@ -35,9 +38,21 @@ app.post('/users', async (request, response) => {
 })
 
 app.get('/users', async (request, response) => {
+  logger.info('access user get')
+
   const users = await prismaClient.user.findMany()
 
   return response.json(users)
+})
+
+app.get('/logs/app', async (request, response) => {
+  const file = fs.readFileSync(process.cwd() + '/src/logs/app.log')
+  return response.json(file.toString())
+})
+
+app.get('/logs/error', async (request, response) => {
+  const file = fs.readFileSync(process.cwd() + '/src/logs/error.log')
+  return response.json(file.toString())
 })
 
 const options = {
