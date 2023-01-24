@@ -38,29 +38,16 @@ app.post('/users', async (request, response) => {
 })
 
 app.get('/users', async (request, response) => {
-  // logger.info('access user get')
+  logger.info('access user get')
 
   const users = await prismaClient.user.findMany()
 
-  return response.json(process.cwd())
+  return response.json(users)
 })
 
 app.get('/logs/app', async (request, response) => {
-  // const file = fs.readFileSync('/var/task/src/logs/app.log')
-  const items: any[] = []
-  fs.readdir(process.cwd(), function (err, files) {
-    //handling error
-    if (err) {
-      return console.log('Unable to scan directory: ' + err)
-    }
-    //listing all files using forEach
-    files.forEach(function (file) {
-      // Do whatever you want to do with the file
-      console.log(file)
-      items.push(file)
-    })
-  })
-  return response.json(items)
+  const file = fs.readFileSync('app1.log')
+  return response.json(file.toString())
 })
 
 app.get('/logs/error', async (request, response) => {
