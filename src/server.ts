@@ -51,8 +51,22 @@ app.get('/logs/app', async (request, response) => {
 })
 
 app.get('/logs/error', async (request, response) => {
-  const file = fs.readFileSync('/var/task/src/logs/error.log')
-  return response.json(file.toString())
+  const items: any[] = []
+  fs.readdir(process.cwd(), function (err, filenames) {
+    if (err) {
+      return response.json({ err })
+    }
+    filenames.forEach(function (filename) {
+      // fs.readFile(process.cwd() + filename, 'utf-8', function (err, content) {
+      //   if (err) {
+      //     return response.json({ err })
+      //   }
+      //   onFileContent(filename, content)
+      // })
+      items.push(filename)
+    })
+  })
+  return response.json(items)
 })
 
 const options = {
