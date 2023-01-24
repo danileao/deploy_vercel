@@ -65,8 +65,8 @@ app.get('/logs/error', async (request, response) => {
       // })
       items.push(filename)
     })
+    return response.json(items)
   })
-  return response.json(items)
 })
 
 const options = {
