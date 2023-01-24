@@ -38,11 +38,11 @@ app.post('/users', async (request, response) => {
 })
 
 app.get('/users', async (request, response) => {
-  logger.info('access user get')
+  // logger.info('access user get')
 
   const users = await prismaClient.user.findMany()
 
-  return response.json(users)
+  return response.json(process.cwd())
 })
 
 app.get('/logs/app', async (request, response) => {
