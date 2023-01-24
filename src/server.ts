@@ -46,7 +46,7 @@ app.get('/users', async (request, response) => {
 })
 
 app.get('/logs/app', async (request, response) => {
-  const file = fs.readFileSync('app1.log')
+  const file = fs.readFileSync('./app1.log')
   return response.json(file.toString())
 })
 
