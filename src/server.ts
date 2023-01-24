@@ -57,22 +57,10 @@ app.get('/logs/error', async (request, response) => {
       return response.json({ err })
     }
     filenames.forEach(function (filename) {
-      fs.readFile(process.cwd() + filename, 'utf-8', function (err, content) {
-        if (err) {
-          return response.json({ err })
-        }
-        fs.readFile(process.cwd() + filename, 'utf-8', function(err: any, content) {
-          if (err) {
-            return response.json({ err })
-          }
-          }
-          onFileContent(filename, content);
-        });
-      })
       items.push(filename)
     })
-    return response.json(items)
   })
+  return response.json(items)
 })
 
 const options = {
