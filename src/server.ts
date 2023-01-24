@@ -11,7 +11,7 @@ app.use(express.json())
 const port = process.env.PORT || 5000
 
 app.post('/users', async (request, response) => {
-  logger.info('access user post')
+  // logger.info('access user post')
   const { email, username, name } = request.body
 
   const verifyIfExistsUser = await prismaClient.user.findFirst({
@@ -38,7 +38,7 @@ app.post('/users', async (request, response) => {
 })
 
 app.get('/users', async (request, response) => {
-  logger.info('access user get')
+  // logger.info('access user get')
 
   const users = await prismaClient.user.findMany()
 
